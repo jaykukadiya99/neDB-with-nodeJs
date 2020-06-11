@@ -1,8 +1,9 @@
 {
     "name": "herokutry",
     "version": "1.0.0",
-    "main": "nedbApp.js",
+    "main": "como.js",
     "dependencies": {
+        "camo": "^0.12.3",
         "dotenv": "^8.2.0",
         "express": "^4.17.1",
         "mongodb": "^3.5.8",
@@ -11,7 +12,7 @@
     "devDependencies": {},
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "node nedbApp.js"
+        "start": "node como.js"
     },
     "author": "",
     "license": "ISC",
