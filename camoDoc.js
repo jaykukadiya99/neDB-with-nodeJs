@@ -9,8 +9,7 @@ var movie = class Movie extends Document {
             type: String,
             choices: ['G', 'PG', 'PG-13', 'R']
         };
-        this.releaseDate = Date;
-        this.hasCreditCookie = Boolean;
+        this.dataObj = Object;
     }
 
     static collectionName() {
@@ -18,7 +17,11 @@ var movie = class Movie extends Document {
     }
 
     static findAllRMovies() {
-        return this.find({});
+        var n = "jay";
+        var para = 'name';
+        var dataObj = 'dataObj.' + para;
+        return this.find({
+            [dataObj]: n });
     }
 }
 

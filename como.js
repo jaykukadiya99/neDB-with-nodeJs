@@ -1,6 +1,8 @@
 const connect = require('camo').connect;
 const Movie = require('./camoDoc');
+const dataDoc = require('./dataDoc');
 const express = require('express');
+const CryptoJS = require('crypto-js');
 const app = express();
 
 require('dotenv').config();
@@ -23,15 +25,41 @@ app.get('/', async(req, res) => {
 });
 
 app.get('/add', async(req, res) => {
+
+    var obj = {};
+    obj['name'] = 'kinjal';
+    obj['surname'] = 'bathani';
+
+    var thor = Movie.create({
+        title: 'Thor',
+        rating: 'PG-13',
+        dataObj: obj,
+    });
+    thor.save();
+
+    res.redirect('/');
+});
+
+app.get('/addData', async(req, res) => {
+
     var thor = Movie.create({
         title: 'Thor',
         rating: 'PG-13',
         releaseDate: new Date(2011, 4, 2),
         hasCreditCookie: true
     });
-    thor.save();
-
-    res.redirect('/');
+    console.log(1);
+    var ciphertext = CryptoJS.AES.encrypt(JSON.stringify(thor), 'jk').toString();
+    console.log(1);
+    var data = dataDoc.create({
+        title: ciphertext
+    });
+    console.log(1);
+    data.save();
+    var bytes = CryptoJS.AES.decrypt(ciphertext, 'jk');
+    var decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+    // var encrypted = await CryptoJS.AES.encrypt(d, pass);
+    res.send({ ciphertext, decryptedData });
 });
 
 
