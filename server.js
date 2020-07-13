@@ -2,7 +2,7 @@ var express = require('express');
 var app = express()
 require('dotenv').config();
 var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb+srv://jay:jk@mongocluster-izqv5.mongodb.net/mongojk?retryWrites=true&w=majority";
+var url = "mongodb+srv://jay:<password>@mongocluster-izqv5.mongodb.net/mongojk?retryWrites=true&w=majority";
 
 const port = process.env.PORT || 3000;
 
